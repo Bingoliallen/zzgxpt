@@ -1,0 +1,4 @@
+/* pages/certification/index.wxss */
+.cb-size{
+    transform: scale(0.6,0.6);
+  }

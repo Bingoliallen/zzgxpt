@@ -1,0 +1,24 @@
+<home wx:if="{{PageCur=='home'}}" id="my-home"></home>
+<learn wx:if="{{PageCur=='learn'}}"  id="my-learn"></learn>
+<mine wx:if="{{PageCur=='mine'}}"  id="my-mine"></mine>
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="home">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/js_images_learn{{PageCur=='home'?'_nor':'_pro'}}.png"></image>
+    </view>
+    <view class="{{PageCur=='home'?'text-blue':'text-gray'}}">首页</view>
+  </view>
+  <view class="action" bindtap="NavChange" data-cur="learn">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/js_images_training{{PageCur=='learn'?'_nor':'_pro'}}.png"></image>
+    </view>
+    <view class="{{PageCur=='learn'?'text-blue':'text-gray'}}">学习</view>
+  </view>
+  <view class="action" bindtap="NavChange" data-cur="mine">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/js_images_me{{PageCur=='mine'?'_nor':'_pro'}}.png"></image>
+    </view>
+    <view class="{{PageCur=='mine'?'text-blue':'text-gray'}}">我的</view>
+  </view>
+</view>

@@ -1,0 +1,72 @@
+/* pages/mine/mine.wxss */
+.container {
+  
+ 
+} .newsList {
+  width: 100%;
+  padding-top:10rpx;
+  padding-bottom:0rpx;
+  border-bottom: 0px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+.cover {
+  width: 100%;
+}
+.cover-img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+}
+.title {
+  font-size: 1030px;
+  margin-top: 10px;
+}
+.descript {
+  margin-top: 35px;
+  
+}
+.miaosha-price-btn1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding-top:30rpx;
+  padding-left:50rpx;
+  padding-right:50rpx;
+  padding-bottom:30px;
+}
+.contents{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contents1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 44rpx;
+  padding-right: 10rpx;
+}
+.goods-container01{
+  display: flex;
+  justify-content: space-between;  
+  flex-wrap:wrap;
+  box-sizing: content-box;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  padding-bottom: 0rpx;
+  padding-top: 14rpx;
+  background-color: #F2f2f2;
+}
+.goods-box01{
+  width: 339rpx;
+  height: 122rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  border-radius:5px;
+}

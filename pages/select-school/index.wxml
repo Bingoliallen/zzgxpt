@@ -1,0 +1,71 @@
+<!--pages/select-school/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">报名学校</view>
+</cu-custom>
+<view class="content-bg">
+	<view class="content text-lg padding">
+		<view class="text-blue">所报专业：{{className}}</view>
+		<view class="text-blue">所选学校：{{unitName}}</view>
+	</view>
+
+	<view class="bg-white" style="margin: 10px 10px;">
+		<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+			<view class="cu-item bg-school" wx:for="{{list}}" wx:key="index" style="height: 85px;" data-index="{{index}}" bindtap="toSchoolList" data-item="{{item}}" data-id="{{item.unitId}}">
+				<div class="miaosha-price-school">
+					<div class="descript-school">所选学校：</div>
+					<image wx:if="{{index==indexsel}}" src="/images/finish (2).png" style="height: 12px;width:12px;margin-right:10px"></image>
+					<image wx:else style="height: 12px;width:12px;margin-right:10px"></image>
+				</div>
+
+				<view class="justify-center text-center">
+					<view class="text-lg text-blue" style="padding:0px 10px 0px 10px;">{{item.unitName}}</view>
+					<view class="text-lg text-blue" style="padding:0px 10px 0px 10px;">{{item.address}}</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+
+</view>
+
+
+<view wx:if="{{showDialog==true}}" class="cu-modal {{showDialog==true?'show':''}} ">
+	<view class="cu-dialog">
+		<!-- <view class="cu-bar bg-white justify-end">
+			<view class="content"></view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view> -->
+
+		<view class="bg-white padding-left padding-top text-left text-white">
+			<view class="padding-xs text-lg text-black text-bold">
+				确认报名
+			</view>
+		</view>
+
+		<view class="bg-white padding-xs text-left text-white">
+			<view class=" padding-left text-sm text-blue ">
+				所报专业：{{className}}
+			</view>
+			<view class=" padding-left text-sm text-blue ">
+				所报学校：{{unitName}}
+			</view>
+			<view wx:for="{{myclasslist}}" wx:key="index">
+				<view class=" padding-left text-sm text-blue ">
+					[{{item.majorName}}-{{item.levelName}}],学习进度为{{item.speed}}%
+				</view>
+			</view>
+		</view>
+
+
+
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub bg-white  solid-left">
+				<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideModal">考虑一下</button>
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalBM">确认报名</button>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,201 @@
+<!--pages/course-detail/index.wxml-->
+
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">课程详情</view>
+</cu-custom>
+
+<scroll-view scroll-y="{{isScroll}}"> 
+ 
+
+
+<view class="container-video  nav fixed"  style="top:{{CustomBar}}px">
+  <video class="vp-v" src="{{srcUrl}}" poster="{{imgUrl+detaildata.imagePath}}" custom-cache="{{false}}" 
+         bindtimeupdate="timeupdate"></video>
+</view>
+<!-- 
+<video src="{{src}}" binderror="videoErrorCallback" poster="{{imgUrl+detaildata.imagePath}}" style="width:100%;">
+</video> -->
+
+<view class="cu-list menu-avatar" style="margin-top: 56.25%">
+	<view class="cu-item">
+		<view class="content" style="left: 30rpx;">
+			<view style="margin-bottom:10px">
+				<view class="cu-tag {{attributeCls=='text-blue'?'bg-blue':'bg-red'}}">{{attribute}}</view>
+				<text class="text-cut text-drak text-lg" style="padding-left:5px">{{detaildata.className}}</text>
+			</view>
+			<text class="text-cut" >报名时间：{{detaildata.startTime}}至{{detaildata.endTime}}</text>
+		</view>
+		<view class="action">
+			<view class="cu-tag bg-white" style="color:#ffffff;margin-bottom:10px;">必修</view>
+			<text >{{detaildata.classHour}}学时</text>
+		</view>
+	</view>
+</view>
+
+<view style="margin-top:10px;">
+	<view class="padding flex text-center text-drak bg-white">
+		<view class="flex flex-sub flex-direction solid-right" bindtap="showModalLecturer">
+			<view>
+				<image style="width:25px;height:25px" src="/images/lecturer_nor@3x.png" mode="aspectFill"></image>
+			</view>
+			<view class="margin-top-xs">
+				<text class="text-lg text-drak">课程讲师</text>
+			</view>
+		</view>
+
+		<view class="flex flex-sub flex-direction" bindtap="showModalCourse">
+			<view>
+				<image style="width:25px;height:25px" src="/images/us@3x.png" mode="aspectFill"></image>
+			</view>
+			<view class="margin-top-xs">
+				<text class="text-lg text-drak">课程介绍</text>
+			</view>
+		</view>
+
+	</view>
+</view>
+
+
+<view style="margin-top:10px;">
+	<view class="padding flex text-center text-drak bg-white">
+		<text class="text-lg text-drak">课程目录</text>
+	</view>
+
+	<view class="content-view-de">
+		<view class="bg-white float-view">
+			<div style="background-color: #fff;">
+				<div wx:for="{{detaildata.courseList}}" wx:key='index' class="newsListDe" bindtap="goDetail" data-id="{{item.courseId}}">
+					<div class="title">{{item.courseEntity.courseName}}</div>
+					<div class="descriptDiv">
+						<image class="imgde" style="width:12px;height:12px;" src="/images/broadcast@3x.png" mode="aspectFill"></image>
+						<div class="wordde" :style="item.pic ? 'width: 75%;' : ''">
+							<div class="descriptde">讲师：{{item.teacherName}}</div>
+							<div style="clear:both;" />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</view>
+		<!-- <view class="padding  text-center bg-white">
+			<view>
+				<text class="text-lg text-drak" >线下班级</text>
+			</view>
+		</view> -->
+		<view class="cu-tabbar-height bg-white"></view>
+	</view>
+</view>
+
+</scroll-view>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+	<view class="action" wx:if="{{typePxd}}">
+		<view class="padding  text-center bg-blue" bindtap="addBB">
+			<view>
+				<text class="text-lg text-white" >立即报名</text>
+			</view>
+		</view>
+	</view>
+	<view class="action" wx:else>
+		<view class="padding  text-center bg-grey">
+			<view>
+				<text class="text-lg text-white" >线下班级</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+<view class="cu-modal {{showDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content text-df text-black text-bold">温馨提示</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-blue"></text>
+			</view>
+		</view>
+
+		<view class="bg-white padding-left-xl padding-right-xl padding-bottom text-left text-white">
+			<view class=" text-sm">
+				<text class=" text-gray ">专业课程学习完成后需要报名通用课程（必修课），学习后才可完成线上学习</text>
+			</view>
+		</view>
+
+		<view class="padding cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideModal">取消</button>
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalBB">报班</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+
+<view class="cu-modal {{showDialogStudy==true?'show':''}}">
+	<view class="cu-dialog">
+
+		<view class="bg-white padding-left-xl padding-top-xl padding-bottom text-left text-white">
+			<view class=" text-df text-black text-bold">
+				添加成功
+			</view>
+			<view class=" text-sm">
+				<text class=" text-gray ">你已成功添加培训班级，</text>
+				<text class=" text-red "> 3S</text>
+				<text class=" text-gray ">后开始学习</text>
+			</view>
+		</view>
+
+		<view class="padding cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalStudy">立即学习</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+<view class="cu-modal {{showDialogLecturer==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="action" bindtap="hideModalLecturer">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="bg-white text-center text-white">
+		    <image wx:if="{{detaildata.teacherInfoRPS[0].imagePath == undefined ||detaildata.teacherInfoRPS[0].imagePath==null ||detaildata.teacherInfoRPS[0].imagePath==''}}" class="cu-avatar xl round" src="/images/bg_2@3x (3).png" style="background-image:url('/images/bg_2@3x (3).png');width: 128rpx;height: 128rpx;"></image>
+			<image wx:else class="cu-avatar xl round" src="{{imgUrl+detaildata.teacherInfoRPS[0].imagePath}}" style="background-image:url({{imgUrl+detaildata.teacherInfoRPS[0].imagePath}});width: 128rpx;height: 128rpx;"></image>
+			<view class="padding text-df text-black ">
+				{{detaildata.teacherNameShow}}
+			</view>
+			<view class="text-df text-black">
+				{{detaildata.teacherInfoRPS[0].memo}}
+			</view>
+			<view class="padding-xl">
+				
+			</view>
+		</view>
+	</view>
+</view>
+
+
+ <import src="../../components/wxParse/wxParse.wxml" />
+<view class="cu-modal {{showDialogCourse==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="action" bindtap="hideModalCourse">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="bg-white padding-xl" style="height:auto">
+		   <template is="wxParse" data="{{wxParseData:newsDetailData.nodes}}" />
+
+			<button class="cu-btn line-blue text-blue" bindtap="hideModalCourse">知道了</button>
+				
+		</view>
+	</view>
+</view>

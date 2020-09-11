@@ -1,0 +1,24 @@
+<!--pages/nav-list/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+
+<scroll-view scroll-x class="bg-white nav fixed" style="top:{{CustomBar}}px" scroll-with-animation scroll-left="{{scrollLeft}}">
+	<view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{scrollList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}" data-item="{{item}}">
+		{{item.name}}
+	</view>
+</scroll-view>
+
+<view class="content-view" style="margin-top: 90rpx">
+	<view class="bg-white float-view">
+		<view class="goods-container">
+			<view class="goods-box" wx:for="{{elaboratelist}}" wx:key="id" bindtap="toNavDetail" data-id="{{item.id}}">
+				<view class="img-box">
+					<image src="{{imgUrl+item.imagesPath}}" class="image" mode="aspectFill" lazy-load="true" />
+				</view>
+				<view class="goods-title">{{item.name}}</view>
+			</view>
+		</view>
+	</view>
+</view>

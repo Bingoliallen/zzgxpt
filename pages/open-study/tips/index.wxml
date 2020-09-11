@@ -1,0 +1,43 @@
+<!--pages/open-study/tips/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">温馨提示</view>
+</cu-custom>
+
+<view class="bg-white">
+	<view class="padding-xl text-center text-white">
+		<view class="padding-xs text-lg text-black text-bold">
+			学习过程中会随机抓拍人脸
+		</view>
+		<view class="padding-xs text-red ">
+			请确保是本人学习
+		</view>
+	</view>
+	<view class="padding-xl  text-center text-white">
+		<image class="cu-avatar xl round" src="/images/bg_2@3x (3).png" style="background-image:url('/images/bg_2@3x (3).png');width: 328rpx;height: 328rpx;"></image>
+	</view>
+	<view class="padding-xl text-center text-white">
+		<view class="padding-xs text-lg text-black ">
+			观看视频时请调整手机位置对准人脸
+		</view>
+		<view class="padding-xs" wx:if="{{first}}">
+			<checkbox class="round purple cb-size"></checkbox>
+			<text class=" text-black ">勾选并同意</text>
+			<text class=" text-red "> 人脸采集与识别服务协议</text>
+		</view>
+       <view class="padding-xs" wx:else>
+			<checkbox class="round purple cb-size"></checkbox>
+			<text class=" text-black ">下次不提示</text>
+		</view>
+	</view>
+    
+    <view class="padding-xl  text-center text-white">
+	</view>
+
+	<view class="padding-xl flex flex-direction">
+		<button class="cu-btn bg-purple lg" bindtap="toNext">下一步</button>
+	</view>
+  <view class="padding-xl  text-center text-white">
+	</view>
+
+</view>

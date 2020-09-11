@@ -1,0 +1,26 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">课程中心</view>
+</cu-custom>
+<!-- <view class="content-bg">
+	
+
+</view> -->
+<view class="cu-bar bg-white solid-bottom">
+		<view class="flex-sub text-center bg">
+			<view class="solid-bottom text-xl padding">
+				<text class="text-white text-bold">选择培训工种</text>
+			</view>
+		</view>
+	</view>
+	<view class="bg-white" style="margin: 10px 10px;">
+		<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+			<view class="cu-item" wx:for="{{list}}" wx:key="index" style="height: 105px;" bindtap="toCourseList" data-item="{{item}}" data-id="{{item.id}}">
+			 <view class=" padding  text-center ">
+				<!-- <view class="cu-tag round bg-{{ iconList[(index)%10].color}} sm" style="height: 25rpx;width:40rpx;margin-top:15px"><text ></text></view> -->
+			    	<text class="cu-tag round bg-{{ iconList[(index)%10].color}} sm" style="height: 25rpx;width:40rpx"></text>
+				    <text class="text-drak" style="padding:0px 10px 0px 10px;">{{item.name}}</text>
+				</view>
+			</view>
+		</view>
+	</view>

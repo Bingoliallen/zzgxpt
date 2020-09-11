@@ -1,0 +1,250 @@
+<!--pages/learn/learn.wxml-->
+<!--微信顶部-->
+<cu-custom bgColor="bg-gradual-blue">
+	<view slot="content" class="text-xl text-bold">学习</view>
+</cu-custom>
+
+
+
+<view class="content-view">
+	<view wx:if="{{isLogin==true && newsList!=null && newsList.length>0}}">
+		<view class="cu-bar bg-white float-view" style="padding-left: 8px;padding-right: 8px;">
+			<view class="notice">
+				<view class="sub-title">
+					<!-- <text class="cuIcon-presentfill lg text-blue" style="font-size: 19px;"></text> -->
+					<text class="text-xl text-bold text-blue" style="margin-left: 8px;">学习</text>
+				</view>
+			</view>
+			<view class="more">
+				<navigator url="/pages/course-center/index?typeId=0">课程中心>></navigator>
+			</view>
+
+		</view>
+
+		<div class="container" style="background-color: #fff;">
+			<!-- <image style="padding-left: 0px;padding-right: 0px;margin-bottom: 10px;height: 189rpx;width:100%;" src="{{url}}" mode="aspectFit"></image> -->
+
+			<div wx:for="{{newsList}}" wx:key='classId' class="newsList" >
+				<div class="cover" bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">
+					<image class="cover-img" src="{{item.imagePath}}" mode="aspectFill" />
+				</div>
+				<div class="title" bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">{{item.className}}</div>
+				<div class="miaosha-price-btn" bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">
+					<div class="descript">学习截止时间：{{(item.limitTime==null||item.limitTime=='')?'无期限':item.limitTime}}<text style="padding-left: 20px;padding-right: 10px;">{{item.classHour?item.classHour:0}}学时</text></div>
+					<!-- <div class="descript-bl">已学习{{item.studySpeed?item.studySpeed:0}}%</div> -->
+				</div>
+				<div class="miaosha-price-btn-xx">
+					<div class="descript-cr-xx" bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">免费 </div>
+					<div>
+
+						<button  wx:if="{{item.classStatus== 0 }}"  bindtap="toNull" class="cu-btn bg-white padding-right">待审核</button>
+						<button wx:if="{{item.classStatus== 0 }}" bindtap="showCXModal" data-id="{{item.accountClassId}}" class="cu-btn bg-blue ">撤销报名</button>
+
+	          <text  wx:if="{{ (item.classStatus== 1||item.classStatus== 2) && item.studySpeed>0}}" class="cu-btn bg-white text-blue padding-right">{{item.studySpeed}}%</text>
+						<button wx:if="{{ item.classStatus== 1||item.classStatus== 2}}" class="cu-btn bg-blue " bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">开始学习</button>
+
+						<button wx:if="{{item.classStatus== 3 }}" class="cu-btn bg-grey ">学习完成</button>
+						<button wx:if="{{item.classStatus== 4 }}" class="cu-btn bg-grey ">考试通过</button>
+						<button wx:if="{{item.classStatus== 5 }}" class="cu-btn bg-grey ">考试未通过</button>
+						<button wx:if="{{item.classStatus== 6 }}" class="cu-btn bg-grey ">已撤销</button>
+
+						<button  wx:if="{{item.classStatus== 7 }}" bindtap="toNull" class="cu-btn bg-white padding-right">审核不通过</button>
+						<button wx:if="{{item.classStatus== 7 }}" bindtap="toAddClass" data-id="{{item.classId}}" data-item="{{item}}" class="cu-btn bg-blue ">重新报名</button>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</view>
+<view wx:if="{{isLogin==true && newsList!=null && newsList.length==0}}">
+		<view class="padding-xl text-center text-white">
+			<view class="padding-xl">
+				<image src="/images/js_images_st_not_add.png" style="width:90%;" mode="widthFix"> </image>
+			</view>
+
+
+			<view class="padding-xs text-gray">
+				还未报班
+			</view>
+			<view class="padding">
+				<button class="cu-btn bg-blue" bindtap="toCenterNew">立即报名</button>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{isLogin==false}}">
+		<view class="padding-xl text-center text-white">
+			<view class="padding-xl">
+				<image src="/images/js_images_st_not_add.png" style="width:90%;" mode="widthFix"> </image>
+			</view>
+
+
+			<view class="padding-xs text-gray">
+				您当前未登录账户，无法查看
+			</view>
+			<view class="padding">
+				<button class="cu-btn bg-blue" bindtap="toLogin">立即登录</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+<view wx:if="{{showDialog==true}}" class="cu-modal {{showDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<!-- <view class="cu-bar bg-white justify-end">
+				<view class="content"></view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view> -->
+
+		<view class="bg-white padding-top-xl text-center text-white">
+			<view class="bg-white padding-xs text-lg text-black text-bold">
+				实名认证
+			</view>
+		</view>
+		<view class="bg-white padding-xl text-left text-white">
+			<view class="padding-xs text-black ">
+				根据《河南省人民政府办公厅关于印发河南职业技能提升行动方案（2019-2021年）的通知》和《河南省人力资源和社会保障厅河南财政厅关于进一步明确职业技能提升行动资金使用的通知》要求，职业技能提升线上培训必须实施人员监管，确保本人亲自参与培训方可申请补贴，因此需采集学员人脸信息，便于后续补贴申请
+			</view>
+			<view class="bg-white padding-xs text-red ">
+				我们承诺：此平台收集的基本信息以及人脸信息均作为学员向监管部门申请培训补贴的证明材料使用，禁做他用，请学员放心使用！
+			</view>
+		</view>
+
+
+
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn line-blue text-blue" bindtap="hideModal">知道了</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+
+
+<view wx:if="{{showCXDialog==true}}" class="cu-modal {{showCXDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content text-df text-black text-bold">是否要撤销报名？</view>
+			<view class="action" bindtap="hideCXModal">
+				<text class="cuIcon-close text-blue"></text>
+			</view>
+		</view>
+
+		<view class="bg-white padding-left-xl padding-right-xl padding-bottom text-left text-white">
+			<view class=" text-sm">
+				<text class=" text-gray ">撤销报名后，需要在课程中心重新报名</text>
+			</view>
+		</view>
+
+		<view class="padding cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideCXModal">取消</button>
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalCX">确定</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+<view wx:if="{{showJYTSDialog==true}}" class="cu-modal {{showJYTSDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="bg-white padding-top-xl text-center text-white">
+			<view class="bg-white padding-xs text-lg text-black text-bold">
+				提交结业申请
+			</view>
+		</view>
+		<view class="bg-white padding-xl text-left text-white">
+			<view class="padding-xs text-black ">
+				检测到您尚有班级<text class="text-blue">{{className}}</text>未提交结业申请，请提交您的结业申请后再进行学习，谢谢配合！
+			</view>
+		</view>
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn bg-blue lg" bindtap="hideJYTSDModal">提交</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+<view wx:if="{{showJYDialog==true}}" class="cu-modal {{showJYDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="bg-white padding-top-xs text-center text-white">
+			<view class="bg-white padding-xs text-lg text-black text-bold">
+				提交结业申请
+			</view>
+			<view class="bg-white padding-top-xs padding-bottom-xs padding-left-xl  padding-right-xl text-red ">
+				检测到您尚有班级未提交结业申请，请提交您的结业申请后再进行学习，感谢配合！
+			</view>
+		</view>
+		
+
+		<form>
+
+			<view class="cu-form-group">
+				<view class="title">姓名</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="text" value="{{name}}" bindinput="nameInput"></input>
+
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">联系电话</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="number" value="{{phone}}" bindinput="phoneInput"></input>
+			</view>
+
+
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" value="{{gz }}" bindinput="gzInput"></input>
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种等级</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入"  value="{{gzdj}}" bindinput="gzdjInput"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">预计参加考试时间</view>
+				<view>
+				<radio-group bindchange="radioChange">
+					<radio value="06" class="blue radio-size"> <text class="text-black text-lg margin-left-xs">6月</text></radio>
+					<radio value="07" class="blue radio-size"> <text class="text-black text-lg margin-left-xs">7月</text></radio>
+        	<radio value="08" class="blue radio-size "> <text class="text-black text-lg margin-left-xs">8月</text></radio>
+        </radio-group>
+				
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">备注</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入"  value="{{bz}}" bindinput="bzInput"></input>
+			</view>
+
+		</form>
+		<view class="bg-white text-white">
+			<view class="padding-left-xl padding-right-xl padding-top-xl padding-bottom flex flex-direction">
+					<button class="cu-btn bg-blue lg" bindtap="savezhengzhoumessage">提交</button>
+				</view>
+
+		</view>
+
+	
+	</view>
+</view>

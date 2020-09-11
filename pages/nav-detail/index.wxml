@@ -1,0 +1,81 @@
+<!--pages/nav-detail/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">课程详情</view>
+</cu-custom>
+
+
+<view class="container-video  nav fixed"  style="top:{{CustomBar}}px">
+  <video id='myVideo' class="vp-v" src="{{srcUrl}}" poster="{{imgUrl+detaildata.imagesPath}}" custom-cache="{{false}}" 
+         bindtimeupdate="timeupdate"></video>
+</view>
+
+<!-- <video src="{{srcUrl}}" binderror="videoErrorCallback" poster="{{imgUrl+detaildata.imagesPath}}" style="width:100%;">
+</video> -->
+
+<view class="cu-list menu-avatar" style="margin-top: 56.25%">
+	<view class="bg-white " style="padding: 20rpx 20rpx 0rpx 20rpx;">
+		<text class="text-bold text-drak text-lg yk-detail-title" >{{detaildata.name}}</text>
+	</view>
+	<view class="cu-item">
+		<view class="content" style="left: 20rpx;">
+			<text class="text-cut" >讲师：无</text>
+		</view>
+		<view class="action" style="width: auto;padding-right:20rpx">
+			<text  class="text-cut">发布时间：{{releaseTime}}</text>
+		</view>
+	</view>
+</view>
+
+<view style="margin-top:1px;">
+	<view class="padding bg-white">
+		<view>
+			<text class="text-lg text-bold text-drak">课程介绍</text>
+		</view>
+		<view>
+			<text class="text-lg text-drak">暂无简介</text>
+		</view>
+	</view>
+
+	<view class="content-view-de">
+		<view class="bg-white float-view">
+			<div style="background-color: #fff;">
+				<div wx:for="{{newsList}}" wx:key='id' class="newsListDe" bindtap="goDetail" data-id="{{item.id}}">
+					<div class="title">{{item.title}}</div>
+					<div class="descriptDiv">
+						<image class="imgde" style="width:12px;height:12px;" src="/images/broadcast@3x.png" mode="aspectFill"></image>
+						<div class="wordde" :style="item.pic ? 'width: 75%;' : ''">
+							<div class="descriptde">{{item.descript}}</div>
+							<div style="clear:both;" />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</view>
+		<view class="cu-tabbar-height bg-white"></view>
+	</view>
+</view>
+
+<!-- <view class="cu-bar  tabbar bg-white shadow foot">
+	<view class="action">
+		<view class="padding  text-right ">
+		
+		</view>
+	</view>
+
+</view> -->
+
+<view wx:if="{{isopen}}" class="nav-ts-bottom">
+	<view class="padding  text-right ">
+		<view class="cu-capsule round">
+			<view class="cu-tag bg-purple ">
+
+				<text  style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">视频不记录学时 </text>
+				<text class="cuIcon-roundclose xs"  style="padding-top:2px;" bindtap="toclose"></text>
+			</view>
+
+		</view>
+	</view>
+
+</view>

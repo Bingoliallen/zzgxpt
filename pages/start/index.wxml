@@ -1,0 +1,5 @@
+<!--pages/start/index.wxml-->
+<view class="page-splash">
+	<image class="splash-image" mode="aspectFill" src="/images/splash.png" />
+
+</view>

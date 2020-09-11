@@ -1,0 +1,46 @@
+/* pages/course-list/index.wxss */
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left:30rpx;
+    padding-right:30rpx;
+    padding-bottom: 50px;
+  } .newsList {
+    width: 100%;
+    padding-top:10rpx;
+    padding-bottom:0rpx;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover {
+    width: 100%;
+  }
+  .cover-img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+  }
+  .title {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .descript-cr {
+    margin-top: 0px;
+    color:#ffffff;
+  }
+  
+  .miaosha-price-btn {
+    width: 100%;
+    padding-left:0rpx;
+    padding-right:0rpx;
+    padding-bottom: 10px;
+    padding-top:10rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

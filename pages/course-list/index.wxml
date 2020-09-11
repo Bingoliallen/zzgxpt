@@ -1,0 +1,140 @@
+<!--pages/course-list/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+<view class="content-view">
+
+	<div class="container" style="background-color: #fff;">
+
+		<div wx:for="{{list}}" wx:key='index' class="newsList" >
+			<!-- <div wx:if="{{item.pic}}" class="cover">
+				<image class="cover-img" src="{{item.pic}}" mode="aspectFill" />
+
+			</div> -->
+			<view class="bg-img padding-tb-xl" style="background-image: url('{{imgUrl+item.relativeImagePath}}');height: 384rpx;" data-id="{{item.classId}}" data-item="{{item}}" bindtap="goDetail" >
+				<div class="miaosha-price-btn">
+					<div class="descript-cr"> <text style="padding-left: 20px;padding-right: 10px;"></text></div>
+					<!-- <div class="descript">已学习100%</div> -->
+					<div>
+						<button class="cu-btn bg-red ">{{item.classHour}}学时</button>
+					</div>
+
+				</div>
+			</view>
+
+
+
+			<div class="title"  data-id="{{item.classId}}" data-item="{{item}}" bindtap="goDetail" >{{item.className}}</div>
+			<div class="miaosha-price-btn">
+				<div class="descript-cr">学习截止时间：2020-09-14 </div>
+				<!-- <div class="descript">已学习100%</div> -->
+				<div>
+					<button wx:if="{{typeId==0 && item.classStatus== null}}" data-id="{{item.classId}}" data-item="{{item}}" data-name="{{item.className}}" bindtap="toAddClass" class="cu-btn bg-blue ">立即报名</button>
+
+					<button  wx:if="{{typeId==0 && item.classStatus== 0 }}" class="cu-btn bg-white margin-right">待审核</button>
+					<button wx:if="{{typeId==0 && item.classStatus== 0 }}"  data-id="{{item.accountClassId}}" bindtap="showCXModal" class="cu-btn bg-blue ">撤销报名</button>
+
+					<button wx:if="{{typeId==0 && item.classStatus== 1}}" class="cu-btn bg-blue " data-id="{{item.classId}}" data-item="{{item}}" bindtap="goLearn">开始学习</button>
+					<button wx:if="{{typeId==0 && item.classStatus== 2}}" class="cu-btn bg-blue " data-id="{{item.classId}}" data-item="{{item}}" bindtap="goLearn">开始学习</button>
+
+          <button  wx:if="{{typeId==0 &&item.classStatus== 7 }}" class="cu-btn bg-white margin-right">审核不通过</button>
+					<button wx:if="{{typeId==0 &&item.classStatus== 7 }}" bindtap="toAddClass" data-id="{{item.classId}}" data-item="{{item}}" data-name="{{item.className}}"  class="cu-btn bg-blue ">重新报名</button>
+
+	        
+					<button wx:if="{{typeId==0 && item.classStatus== 3 }}" class="cu-btn bg-grey ">学习完成</button>
+					<button wx:if="{{typeId==0 && item.classStatus== 4 }}" class="cu-btn bg-grey ">考试通过</button>
+					<button wx:if="{{typeId==0 && item.classStatus== 5 }}" class="cu-btn bg-grey ">考试未通过</button>
+					<button wx:if="{{typeId==0 && item.classStatus== 6 }}" class="cu-btn bg-grey ">已撤销</button>
+
+					<button wx:if="{{typeId==1}}" class="cu-btn bg-grey ">线下班级</button>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<view class="cu-modal {{showDialogBB==true?'show':''}}">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content text-df text-black text-bold">温馨提示</view>
+					<view class="action" bindtap="hideModalBB">
+						<text class="cuIcon-close text-blue"></text>
+					</view>
+				</view>
+
+				<view class="bg-white padding-left-xl padding-right-xl padding-bottom text-left text-white">
+					<view class=" text-sm">
+						<text class=" text-gray ">专业课程学习完成后需要报名通用课程（必修课），学习后才可完成线上学习</text>
+					</view>
+				</view>
+
+				<view class="padding cu-bar bg-white">
+					<view class="action margin-0 flex-sub  solid-left">
+						<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideModalBB">取消</button>
+						<button class="cu-btn bg-blue text-white" bindtap="hideModalAddBB">报班</button>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+
+<view wx:if="{{showCXDialog==true}}" class="cu-modal {{showCXDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content text-df text-black text-bold">是否要撤销报名？</view>
+			<view class="action" bindtap="hideCXModal">
+				<text class="cuIcon-close text-blue"></text>
+			</view>
+		</view>
+
+		<view class="bg-white padding-left-xl padding-right-xl padding-bottom text-left text-white">
+			<view class=" text-sm">
+				<text class=" text-gray ">撤销报名后，需要在课程中心重新报名</text>
+			</view>
+		</view>
+
+		<view class="padding cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideCXModal">取消</button>
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalCX">确定</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+		<view class="cu-modal {{showDialog==true?'show':''}}">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<!-- <view class="content"></view> -->
+					<view class="action" bindtap="hideModal">
+						<text class="cuIcon-close text-blue"></text>
+					</view>
+				</view>
+
+				<view class="bg-white padding-left-xl padding-bottom-xl text-left text-white">
+					<view class=" text-df text-black text-bold">
+						添加成功
+					</view>
+					<view class=" text-sm">
+						<text class=" text-gray ">你已成功添加培训班级，</text>
+						<text class=" text-red "> 3S</text>
+						<text class=" text-gray ">后开始学习</text>
+					</view>
+				</view>
+
+				<view class="padding cu-bar bg-white">
+					<view class="action margin-0 flex-sub  solid-left">
+						<button class="cu-btn line-blue text-blue margin-right" bindtap="hideModal">继续添加</button>
+						<button class="cu-btn bg-blue text-white" bindtap="hideModalStudy">立即学习</button>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</div>
+
+
+</view>

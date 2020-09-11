@@ -1,0 +1,77 @@
+<!--pages/mine/my-record/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的档案</view>
+</cu-custom>
+
+<view wx:if="{{ list!=null && list.length>0}}" class="bg-white padding-tb-sm">
+	<view class="cu-list menu " style="margin-top: 0rpx:">
+		<view class="cu-item padding-tb-xl">
+			<view class="content ">
+				<view>
+					<text class="text-lg margin-right-xs">{{learnYear}}年度</text>
+					<text class="text-red  text-sm margin-right-xs">{{learnYearDetail.isPass==1?'(已完成)':'(未完成)'}}</text>
+				</view>
+				<view class="text-gray margin-top-sm">
+					<text >必修:</text>
+					<text class="text-red">{{learnYearDetail.learnRequiredHour}}</text>
+					<text class="margin-right-xs">学时</text>
+
+					<text >选修:</text>
+					<text class="text-red">{{learnYearDetail.learnElectiveHour}}</text>
+					<text class="margin-right-xs">学时</text>
+				</view>
+			</view>
+			<view class="action">
+				<view class="text-lg margin-right-xs">
+
+				</view>
+				<picker bindchange="PickerChange" value="{{myrecordlist.learnYear}}" range-key="{{'learnYear'}}" range="{{myrecordlist}}">
+					<view class="picker">
+						切换年度<text class="cuIcon-tagfill text-df text-blue margin-left-xs"></text>
+					</view>
+				</picker>
+			</view>
+		</view>
+	</view>
+
+</view>
+<view class="content-view" style="margin-top: 10px">
+	<view wx:if="{{ list!=null && list.length>0}}">
+		<div class="container" style="background-color: #fff;">
+
+			<div wx:for="{{list}}" wx:key='id' class="newsList-record" bindtap="goDetail" data-id="{{item.classId}}" data-item="{{item}}">
+				<div class="title-record">
+					<view class="cu-tag bg-blue margin-right-xs">{{item.attributeName}}</view>{{item.classEntity.className}}
+				</div>
+				<div class="cover">
+					<image class="cover-img-record" src="{{imgUrl+item.classEntity.imagePath}}" mode="aspectFill" />
+				</div>
+				<div class="miaosha-price-btn">
+					<div class="descript">{{item.classEntity.classHour}}学时 <text class="text-red" style="padding-left: 10px;padding-right: 0px;">{{item.studyStatusName}}</text></div>
+				</div>
+
+			</div>
+		</div>
+
+	</view>
+
+  <view wx:else>
+		<view class="padding-xl text-center text-white">
+			<view class="padding-xl">
+			
+			</view>
+			<view class="padding-xl">
+				<image src="/images/certificate@2x.png" style="width:60%;" mode="widthFix"> </image>
+			</view>
+
+
+			<view class="padding-xs text-gray">
+				暂无档案
+			</view>
+			<view class="padding">
+			
+			</view>
+		</view>
+	</view>
+</view>

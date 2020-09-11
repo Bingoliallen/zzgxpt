@@ -1,0 +1,71 @@
+<!--pages/mine/my-order/order-detail/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">订单详情</view>
+</cu-custom>
+
+
+<view class="bg-drak">
+	<view class="padding-tb-xl">
+		<view class="text-center text-white">
+			<view class="text-lg text-black">
+				<text class="text-black"  >恭喜你完成支付，</text>
+				<text class="text-blue" bindtap="goDetail" >前往学习</text>
+				<text class="text-black" >	吧！</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="cu-list menu-avatar bg-white">
+	<view class="cu-item ">
+		<view class="cu-avatar" style="background-color:transparent;">
+			<image style="width:25px;height:25px" src="/images/information@2x.png" mode="aspectFit"></image>
+		</view>
+		<view class="content" style="left: 55px;">
+			<view>
+				<text class="text-cut">{{orderdetail.realName}}</text>
+			</view>
+			<view>
+				<text class="text-cut">{{orderdetail.cardNum}}</text>
+			</view>
+		</view>
+
+	</view>
+</view>
+
+<div class="newsList-order margin-top margin-bottom bg-white">
+	<view class="item-content-order">
+		<image src="{{imgUrl+orderdetail.orderItemList[0].orderClassInfoRP.imageUrl}}" mode="aspectFill"></image>
+		<view class="desc">
+			<view class="text-content"> {{orderdetail.orderItemList[0].orderClassInfoRP.className}}</view>
+			<view>
+				<view class="cu-tag bg-gray light sm padding-xs">
+					<text class="text-df text-black">{{orderdetail.orderItemList[0].orderClassInfoRP.year}}年度</text>
+				</view>
+				<text class="text-red margin-left">￥{{orderdetail.orderItemList[0].orderClassInfoRP.price}}</text>
+			</view>
+		</view>
+	</view>
+</div>
+
+
+<view class="cu-list menu-avatar bg-white padding-top padding-bottom ">
+	<view class="cu-item" >
+		<view class="cu-avatar" style="background-color:transparent;">
+			<image style="width:25px;height:25px" src="/images/js_images_archives_pro.png" mode="aspectFill"></image>
+		</view>
+		<view class="content" style="left: 55px;">
+			<view >
+				<text class="text-cut">订单状态：{{orderdetail.statusName}}</text>
+			</view>
+			<view >
+				<text class="text-cut">订单编号：{{orderdetail.orderNo}}</text>
+			</view>
+			<view >
+				<text class="text-cut">创建时间：{{orderdetail.createTime}}</text>
+			</view>
+		</view>
+
+	</view>
+</view>

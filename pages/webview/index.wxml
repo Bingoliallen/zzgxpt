@@ -1,0 +1,9 @@
+<!--pages/webview/index.wxml-->
+<!-- <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom> -->
+
+<web-view src="{{newsUrl}}" />
+
+

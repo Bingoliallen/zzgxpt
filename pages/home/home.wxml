@@ -1,0 +1,172 @@
+<!--微信顶部-->
+<cu-custom bgColor="bg-gradual-blue">
+	<view slot="content" class="text-xl text-bold">郑州高训平台</view>
+</cu-custom>
+<view class="content-view">
+	<view class="bg-white float-view">
+		<swiper style="margin-left: 8px;margin-right: 8px;" class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" indicator-color="#8799a3" indicator-active-color="#0081ff">
+			<swiper-item wx:for="{{bannerList}}" wx:key="index">
+				<image src="{{item.path}}" mode="aspectFit" wx:if="true"></image>
+		
+			</swiper-item>
+		</swiper>
+
+	</view>
+
+	<view class="cu-bar bg-drak float-view" style="margin-left: 8px;margin-right: 8px;">
+		<view class="notice">
+			<view class="sub-title">
+				<text class="cuIcon-presentfill lg text-blue" style="font-size: 19px;"></text>
+				<text class="text-xl text-bold text-blue" style="margin-left: 8px;">培训课程</text>
+			</view>
+		</view>
+		<view class="more" bindtap="more1">
+			<navigator >更多>></navigator>
+		</view>
+	</view>
+
+	<view class="bg-white float-view">
+		<view class="goods-container">
+			<view class="goods-box" wx:for="{{classlist}}" wx:key="index" bindtap="toCourseDetail0" data-id="{{item.classId}}" data-item="{{item}}">
+				<view class="img-box">
+					<image src="{{imgUrl+item.relativeImagePath}}" class="image" mode="aspectFill" lazy-load="true" />
+				</view>
+				<view class="goods-title">{{item.className}}（{{item.levelName}}</view>
+			
+			</view>
+		</view>
+	</view>
+
+
+	<view class="cu-bar bg-drak float-view" style="margin-left: 8px;margin-right: 8px;">
+		<view class="notice">
+			<view class="sub-title">
+				<text class="cuIcon-presentfill lg text-blue" style="font-size: 19px;"></text>
+				<text class="text-xl text-bold text-blue" style="margin-left: 8px;">企业订制</text>
+			</view>
+		</view>
+		<view class="more" bindtap="more2">
+			<navigator >更多>></navigator>
+		</view>
+	</view>
+
+	<view class="bg-white float-view">
+		<view class="goods-container">
+			<view class="goods-box" wx:for="{{qyclasslist}}" wx:key="index" bindtap="toCourseDetail" data-id="{{item.classId}}"  data-item="{{item}}">
+				<view class="img-box">
+					<image src="{{imgUrl+item.relativeImagePath}}" class="image" mode="aspectFill" lazy-load="true" />
+				</view>
+				<view class="goods-title">{{item.className}}（{{item.levelName}}</view>
+			
+			</view>
+		</view>
+	</view>
+
+
+
+	<view class="cu-bar bg-white float-view" style="padding-left: 8px;margin-right: 8px;">
+		<view class="notice">
+			<view class="sub-title">
+				<text class="cuIcon-presentfill lg text-blue" style="font-size: 19px;"></text>
+				<text class="text-xl text-bold text-blue" style="margin-left: 8px;">疫情防控课程</text>
+			</view>
+		</view>
+		<view class="more"  bindtap="toYqfk">
+			<navigator >更多>></navigator>
+		</view>
+	</view>
+
+	<view class="bg-white float-view">
+		<image style="padding-left: 8px;padding-right: 8px;margin-top: 8px;height: 169rpx;width:100%;" bindtap="toYqfk" src="{{url}}" mode="aspectFill"></image>
+		<view class="goods-container">
+			<view class="goods-box" wx:for="{{elaboratelist}}" wx:key="id" bindtap="toNavDetail" data-id="{{item.id}}">
+				<view class="img-box">
+					<image src="{{imgUrl+item.imagesPath}}" class="image" mode="aspectFill" lazy-load="true" />
+				</view>
+				<view class="goods-title">{{item.name}}</view>
+				<!-- <view style='display:flex;'>
+					<view class="goods-price">¥ {{item.minPrice}}</view>
+					<view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+				</view> -->
+			</view>
+		</view>
+	</view>
+
+
+	<view class="bg-white float-view">
+		<image style="padding:10px;height:90px;width:100%;" src="/images/js_images_flow.png" mode="aspectFit"></image>
+	</view>
+
+
+
+	<view class="cu-bar bg-white float-view" style="padding-left: 8px;margin-right: 8px;">
+		<view class="notice">
+			<view class="sub-title">
+				<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+					<view class="cu-item text-bold {{index==TabCur?'text-blue cur':''}}" wx:for="{{scrollList}}" wx:key="index" bindtap="tabSelect" data-item="{{item}}" data-id="{{index}}">
+						{{item.name}}
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+
+		<view class="more" bindtap="more4">
+			<navigator >更多>></navigator>
+		</view>
+	</view>
+
+	<div style="background-color: #fff;">
+		<div wx:for="{{wzlist}}" wx:if="{{index<3}}" wx:key='id' class="newsList" bindtap="goNewsDetail" data-id="{{item.url}}">
+			<div class="title">{{item.title}}</div>
+			<div class="descriptDiv">
+				<div class="word" :style="item.pic ? 'width: 75%;' : ''">
+					<div class="descript">{{item.publishDate}}</div>
+					<div style="clear:both;" />
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<view class="cu-bar bg-drak float-view" style="margin-left: 8px;margin-right: 8px;">
+		<view class="notice">
+			<view class="sub-title">
+				<!-- <text class="cuIcon-presentfill lg text-blue" style="font-size: 19px;"></text> -->
+				<text class="text-xl text-bold text-blue" style="margin-left: 8px;">非遗专区</text>
+			</view>
+		</view>
+		<view class="more"  bindtap="more5">
+			<navigator >更多>></navigator>
+		</view>
+	</view>
+
+	<view class="product">
+		<scroll-view scroll-x="true" class="pro">
+			<view class="item" wx:for="{{fyelaboratelist}}" wx:key="index" bindtap="toNavDetailfy" data-id="{{item.id}}">
+				<navigator >
+					<image src="{{imgUrl+item.imagesPath}}" mode='aspectFill'></image>
+					<view class='name'>{{item.name}}</view>
+				</navigator>
+			</view>
+		</scroll-view>
+	</view>
+
+
+	<view class="bg-white justify-center float-view" style="margin-top:30rpx;margin-bottom:100rpx;">
+		<view class="content text-center padding-lg" >
+			<view style="font-size: 11px;">主办方：郑州市高技能人才公共实训管理服务中心 </view>
+			<!-- <view style="font-size: 11px;">郑州市高技能人才公共实施基地</view> -->
+			<view style="font-size: 11px;">协办方：郑州职业教育行业协会</view>
+			<view style="font-size: 11px;">技术支持：河南高辉教育科技有限公司</view>
+			<view style="font-size: 11px;">平台服务电话：0371-67183382</view>
+		</view>
+
+	</view>
+
+	
+</view>

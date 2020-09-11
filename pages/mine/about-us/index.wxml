@@ -1,0 +1,24 @@
+<!--pages/mine/about-us/index.wxml-->
+
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">关于我们</view>
+</cu-custom>
+
+<view class="bg-white">
+	<!-- <view class="bg-img padding-tb-xl" style="background-image: url('/images/bg_4.png');height: 614rpx;">
+	</view> -->
+	<image src="/images/bg_4.png" style="width:100%;" mode="widthFix">
+	</image>
+
+	<view class="padding-xl text-center text-white">
+		<view class="padding-xs text-lg text-black text-bold">
+			当前版本V1.0.3
+		</view>
+		<view class="padding-xs">
+			<!-- <button class="cu-btn bg-purple lg" bindtap="getnewversion">检查更新</button> -->
+		</view>
+	</view>
+
+
+</view>

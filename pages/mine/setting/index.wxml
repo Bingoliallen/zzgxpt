@@ -1,0 +1,85 @@
+<!--pages/mine/setting/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">设置</view>
+</cu-custom>
+
+
+
+<view class="cu-list menu" style="height:calc(100vh - {{CustomBar}}px -(100rpx + env(safe-area-inset-bottom) / 2))">
+	<view class="cu-item arrow" bindtap="goGrzl">
+		<navigator class="content" hover-class="none">
+			<image src="/images/data@3x.png" class="png-set" mode="aspectFit"></image>
+			<text class="text-grey">个人资料</text>
+		</navigator>
+	</view>
+
+	<view class="cu-item arrow" bindtap="goGywm">
+		<navigator class="content" hover-class="none">
+			<image src="/images/us@3x.png" class="png-set" mode="aspectFit"></image>
+			<text class="text-grey">关于我们</text>
+		</navigator>
+	</view>
+
+	<view class="cu-item arrow" bindtap="goYhxy">
+		<navigator class="content" hover-class="none">
+			<image src="/images/order_pro@3x.png" class="png-set" mode="aspectFit"></image>
+			<text class="text-grey">用户协议</text>
+		</navigator>
+	</view>
+	<view class="cu-item arrow" bindtap="goYstk">
+		<navigator class="content" hover-class="none">
+			<image src="/images/policy@3x.png" class="png-set" mode="aspectFit"></image>
+			<text class="text-grey">隐私政策</text>
+		</navigator>
+	</view>
+
+	<view class="cu-item arrow" bindtap="goRlcj">
+		<navigator class="content" hover-class="none">
+			<image src="/images/identify@3x.png" class="png-set" mode="aspectFit"></image>
+			<text class="text-grey">人脸采集与识别服务协议</text>
+		</navigator>
+	</view>
+</view>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+	<view class="action">
+		<view class="padding  text-center bg-blue" bindtap="showModal">
+			<view>
+				<text class="text-lg text-white" >退出</text>
+			</view>
+		</view>
+	</view>
+	
+</view>
+
+
+
+<view wx:if="{{showDialog==true}}" class="cu-modal {{showDialog==true?'show':''}} ">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content"></view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+
+		<view class="bg-white text-center text-white">
+			<view class="padding-xs text-lg text-black text-bold">
+				是否退出登录？
+			</view>
+		</view>
+
+	
+
+
+
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub bg-white  solid-left">
+				<button class="cu-btn line-blue text-blue margin-right-xl" bindtap="hideModal"><text class="padding-left padding-right">取消</text></button>
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalTC"><text class="padding-left padding-right">确定</text></button>
+			</view>
+		</view>
+	</view>
+</view>

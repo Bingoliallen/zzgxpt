@@ -1,0 +1,5 @@
+/* pages/mine/setting/index.wxss */
+.png-set{
+  width: 15rpx;
+  height: 15rpx;
+}

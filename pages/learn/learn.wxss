@@ -1,0 +1,76 @@
+/* pages/learn/learn.wxss */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left:30rpx;
+  padding-right:30rpx;
+  padding-bottom: 50px;
+} .newsList {
+  width: 100%;
+  height: 100%;
+  padding-top:10rpx;
+  padding-bottom:0rpx;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+.cover {
+  width: 100%;
+}
+.cover-img {
+  width: 100%;
+  height: 150px;
+  background-color: #f3f0f0;
+  border-radius: 10px;
+}
+.title {
+  font-size: 13px;
+  margin-top: 10px;
+}
+.descript {
+  margin-top: 0px;
+  color:#666;
+  font-size: 10px;
+}
+.descript-bl {
+  margin-top: 0px;
+  color:#0081ff;
+}
+.descript-cr-xx {
+  margin-top: 0px;
+  color:#e54d42;
+}
+
+.miaosha-price-btn {
+  width: 100%;
+  padding-left:0rpx;
+  padding-right:0rpx;
+  padding-bottom: 0px;
+  padding-top:10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.miaosha-price-btn-xx {
+  width: 100%;
+  padding-left:0rpx;
+  padding-right:0rpx;
+  padding-bottom: 10px;
+  padding-top:10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.radio-size{
+  transform: scale(0.8,0.8);
+}
+.nickname_placeholder, .nickname_input {
+  text-align: right;
+}

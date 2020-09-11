@@ -1,0 +1,312 @@
+<!--pages/open-study/start-study/index.wxml-->
+
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">课程学习</view>
+</cu-custom>
+
+<view class="container-video  nav fixed" style="top:{{CustomBar}}px">
+	<video id='myVideo' class="vp-v" src="{{ src }}"  enable-progress-gesture="{{banSeek=='on'?false:true}}" initial-time="{{startplaytime}}" bindended="endOver" autoplay="{{autoplay}}" bindplay="startPlay" bindpause="stopPlay" poster="{{imgUrl+detaildata.imagePath}}" bindfullscreenchange="screenChange" custom-cache="{{false}}" bindtimeupdate="timeupdate" style="z-index:1;">
+
+		<view wx:if="{{showDialog==true && fullScreen2==true}}" class="xiaolianfull1">
+			<view class="takephoto1">
+				<view class="camera">
+
+					<camera id='camera' device-position="front" bindinitdone="startdrawCanvas" flash="off" binderror="error">
+					</camera>
+				</view>
+
+			</view>
+		</view>
+
+		<view wx:if="{{fullScreen2==true}}" class="xiaolianfull">
+			<view wx:if="{{showDialog==true}}" class="padding  text-right ">
+				<view class="cu-capsule round">
+					<view class="cu-tag bg-blue ">
+						<text wx:if="{{num>=0}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">{{num>=0?num:0}}s 即将开始抓拍</text>
+						<!-- <text wx:else class=" text-white" style="padding-right:28px;padding-left:28px;padding-top:2px;padding-bottom:2px;">抓拍中 </text> -->
+						<text wx:if="{{num<0 && isChechkSuccessNum==true}}" class=" text-white" style="padding-right:28px;padding-left:28px;padding-top:2px;padding-bottom:2px;">抓拍中 </text>
+		    		<text wx:if="{{num<0 && isChechkSuccessNum==false}}" class=" text-white" style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">即将开始重新抓拍</text>
+						<text class="cuIcon-emoji lg"  style="padding-top:1px;"></text>
+					</view>
+
+				</view>
+			</view>
+			<view wx:if="{{showDialog==false && (isChechkSuccess==true||(unCheckFaceListShow!=null && unCheckFaceListShow.length>0)) }}" class="padding  text-right animation-{{animation}}">
+				<view class="cu-capsule round">
+					<view class="cu-tag bg-blue ">
+
+						<text wx:if="{{animationShow==true && isChechkSuccess==true}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">已完成{{checkSuccessNumber>=0?checkSuccessNumber:0}}次抓拍</text>
+						<text wx:if="{{animationShow==true && isChechkSuccess==false}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">已完成{{CheckNum>=0?CheckNum:0}}次抓拍</text>
+						<text class="cuIcon-emoji lg"  style="padding-top:1px;"></text>
+					</view>
+				</view>
+			</view>
+
+		</view>
+
+
+		<!-- <view wx:if="{{showDialogERROR==true && fullScreen==true}}"
+		      class="cu-modal {{(showDialogERROR==true && fullScreen==true)?'show':''}}">
+			<view class="cu-dialog">
+				<view class="padding-xs  text-center text-white bg-white">
+					<view class="padding-xs text-xxl text-black text-bold">
+						提示
+					</view>
+				</view>
+				<view class="padding-xs  text-left text-white  bg-white">
+					<view class="padding-xs text-lg text-black text-bold">
+						学习时间段内未检测到人脸，请调整手机位置，并通过人脸校验后再继续学习
+					</view>
+				</view>
+
+				<view class="padding-xl cu-bar bg-white">
+					<view class="action margin-0 flex-sub  solid-left">
+						<button class="cu-btn bg-blue text-white" bindtap="hideModalERROR">开始人脸校验</button>
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+
+
+	</video>
+</view>
+<!-- 
+<video src="{{src}}" binderror="videoErrorCallback" poster="{{url}}" style="width:100%;">
+</video> -->
+
+<view class="cu-list menu-avatar" style="margin-top: 56.25%;">
+	<view class="cu-item">
+		<view class="content" style="left: 30rpx;">
+			<view style="margin-bottom:10px">
+				<!-- <view class="cu-tag bg-red">选修</view> -->
+				<text class="text-cut text-drak text-lg" style="padding-left:0px">{{myClassCourseRP.courseName}}</text>
+			</view>
+			<view>
+				<text class="text-cut">学习截止时间：{{detaildata.lastTime}} </text>
+				<text class="text-cut margin-left" >{{myClassCourseRP.hours}}学时 </text>
+			</view>
+
+		</view>
+		<view class="action">
+			<view class="text-cut  text-lg bg-white" style="color:#ffffff;margin-bottom:10px;">选修</view>
+			<text >已学{{courseLearnRate==0?myClassCourseRP.learnSpeed:courseLearnRate}}%</text>
+		</view>
+	</view>
+</view>
+<wxs module="filter" src="../../../wxs/issue.wxs"></wxs>
+<view style="margin-top:10px;">
+	<view class="padding flex text-center text-drak bg-white">
+		<text class="text-lg text-drak">课程列表</text>
+	</view>
+
+	<view class="content-view-de">
+		<view class="bg-white float-view">
+			<div style="background-color: #fff;">
+				<div wx:for="{{videoRPs}}" wx:key="index" class="newsListDe" id="myitem" bindtap="goDetail" data-id="{{index}}">
+					<div wx:if="{{videoindexid==index}}" class="title-sel">{{item.videoName}}</div>
+					<div wx:else class="title">{{item.videoName}}</div>
+					<div class="descriptDiv">
+						<image class="imgde" style="width:12px;height:12px;" src="/images/broadcast@3x.png" mode="aspectFill"></image>
+						<div class="wordde" :style="item.pic ? 'width: 75%;' : ''">
+							<div class="descriptde">该视频已看：{{filter.numberToFix(item.watchTimeLength)}} / {{filter.numberToFix(item.duration)}} </div>
+							<div style="clear:both;" />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</view>
+
+		<view class="cu-tabbar-height bg-white"></view>
+	</view>
+</view>
+
+
+
+<view wx:if="{{showDialog==true && fullScreen1==false}}" class="xiaolian1">
+	<!-- <view class="cu-dialog">
+		<view class="padding-xl bg-blue">
+			<text class="text-lg text-white ">{{num>=0?num:0}}s 即将开始抓拍</text>
+		</view>
+		
+	</view> -->
+	<view class="takephoto1">
+		<view class="camera">
+
+			<camera id='camera' device-position="front" bindinitdone="startdrawCanvas" flash="off" binderror="error">
+				<!-- <cover-view class='id_m'>
+						<cover-image src='/images/js_images_facebg_3.png' class='img'></cover-image>
+					</cover-view> -->
+			</camera>
+		</view>
+
+	</view>
+</view>
+
+
+
+
+
+
+<view wx:if="{{showDialogERROR==true}}" class="cu-modal {{showDialogERROR==true?'show':''}}">
+	<view class="cu-dialog">
+
+		<view class="padding-xs  text-center text-white bg-white">
+			<view class="padding-xs text-xxl text-black text-bold">
+				提示
+			</view>
+		</view>
+		<view class="padding-xs  text-left text-white  bg-white">
+			<view class="padding-xs text-lg text-black text-bold">
+				学习时间段内未检测到人脸，请调整手机位置，并通过人脸校验后再继续学习
+			</view>
+
+		</view>
+
+
+
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalERROR">开始人脸校验</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+<view wx:if="{{ isRenLianCheckSuss==false}}" class="cu-modal {{isRenLianCheckSuss==false?'show':''}}">
+	<view class="cu-dialog">
+
+		<view class="padding-xs  text-center text-white bg-white">
+			<view class="padding-xs text-xxl text-black text-bold">
+				提示
+			</view>
+		</view>
+		<view class="padding-xs  text-left text-white  bg-white">
+			<view class="padding-xs text-lg text-black text-bold">
+				上次人脸校验未通过，请先通过人脸校验后方可继续学习
+			</view>
+
+		</view>
+
+
+
+		<view class="padding-xl cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left">
+				<button class="cu-btn bg-blue text-white" bindtap="hideModalERRORZC">开始人脸校验</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+<!-- <view class="xiaolian">
+	<view class="contents">
+		<image style=" width: 20px;height: 20px;" src="/images/smileyface (2).png">
+		</image>
+		<button wx:if="{{showDialog==true}}" class="cu-btn bg-blue text-df text-white">
+		 抓拍中
+	    </button>
+	</view>
+
+</view> -->
+
+<view wx:if="{{fullScreen1==false}}" class="xiaolian">
+	<view wx:if="{{showDialog==true}}" class="padding  text-right ">
+		<view class="cu-capsule round">
+			<view class="cu-tag bg-blue ">
+				<text wx:if="{{num>=0}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">{{num>=0?num:0}}s 即将开始抓拍</text>
+				<text wx:if="{{num<0 && isChechkSuccessNum==true}}" class=" text-white" style="padding-right:28px;padding-left:28px;padding-top:2px;padding-bottom:2px;">抓拍中 </text>
+				<text wx:if="{{num<0 && isChechkSuccessNum==false}}" class=" text-white" style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">即将开始重新抓拍</text>
+				<text class="cuIcon-emoji lg"  style="padding-top:1px;"></text>
+			</view>
+
+		</view>
+	</view>
+
+
+	<view wx:if="{{showDialog==false && (isChechkSuccess==true||checkSuccessNumber>0||(unCheckFaceListShow!=null && unCheckFaceListShow.length>0)) }}" class="padding  text-right animation-{{animation}}">
+		<view class="cu-capsule round">
+			<view class="cu-tag bg-blue ">
+			<text wx:if="{{animationShow==true && isChechkSuccess==true}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">已完成{{checkSuccessNumber>=0?checkSuccessNumber:0}}次抓拍</text>
+				<text wx:if="{{animationShow==true && isChechkSuccess==false}}" class=" text-white " style="padding-right:8px;padding-left:8px;padding-top:2px;padding-bottom:2px;">已完成{{CheckNum>=0?CheckNum:0}}次抓拍</text>
+				<text class="cuIcon-emoji lg"  style="padding-top:1px;"></text>
+			</view>
+		</view>
+	</view>
+
+</view>
+
+
+
+
+<view wx:if="{{showJYDialog==true}}" class="cu-modal {{showJYDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="bg-white padding-top-xs text-center text-white">
+			<view class="bg-white padding-xs text-lg text-black text-bold">
+				提交结业申请
+			</view>
+			<view class="bg-white padding-top-xs padding-bottom-xs padding-left-xl  padding-right-xl text-red ">
+				检测到您尚有班级未提交结业申请，请提交您的结业申请后再进行学习，感谢配合！
+			</view>
+		</view>
+
+
+		<form>
+
+			<view class="cu-form-group">
+				<view class="title">姓名</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="text" value="{{name}}" bindinput="nameInput"></input>
+
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">联系电话</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="number" value="{{phone}}" bindinput="phoneInput"></input>
+			</view>
+
+
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" value="{{gz }}" bindinput="gzInput"></input>
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种等级</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入" value="{{gzdj}}" bindinput="gzdjInput"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">预计参加考试时间</view>
+				<view>
+					<radio-group bindchange="radioChange">
+						<view style="display:inline-block;">
+							<radio value="06" class="blue radio-size"> <text class="text-black text-lg ">6月</text></radio>
+							<radio value="07" class="blue radio-size"> <text class="text-black text-lg ">7月</text></radio>
+							<radio value="08" class="blue radio-size "> <text class="text-black text-lg ">8月</text></radio>
+						</view>
+
+					</radio-group>
+
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">备注</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入" value="{{bz}}" bindinput="bzInput"></input>
+			</view>
+
+		</form>
+		<view class="bg-white text-white">
+			<view class="padding-left-xl padding-right-xl padding-top-xl padding-bottom flex flex-direction">
+				<button class="cu-btn bg-blue lg" bindtap="savezhengzhoumessage">提交</button>
+			</view>
+
+		</view>
+
+
+	</view>
+</view>

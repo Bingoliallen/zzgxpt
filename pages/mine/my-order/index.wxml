@@ -1,0 +1,67 @@
+<!--pages/mine/my-order/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的订单</view>
+</cu-custom>
+
+<scroll-view scroll-x class="bg-white nav fixed" style="top:{{CustomBar}}px">
+	<view class="flex text-center" >
+		<view class="cu-item flex-sub {{index==TabCur?'text-blue cur':''}}" wx:for="{{scrollList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}" data-item="{{item}}">
+			{{item.name}}
+		</view>
+	</view>
+</scroll-view>
+
+
+<view class="content-view " style="margin-top: 90rpx">
+
+	<div wx:if="{{ list!=null && list.length>0}}"  class="container-order" style="background-color: #fff;">
+
+		<div wx:for="{{list}}" wx:key='orderId' class="newsList-order" bindtap="goDetail" data-id="{{item.orderId}}">
+			<div class="miaosha-price-btn-order">
+				<div class="descript-order">订单生成时间：{{item.createTime}}</div>
+				<div class="descript-order-pay">{{item.statusName}}</div>
+			</div>
+
+			<view class="item-content-order">
+				<image src="{{imgUrl+item.orderItemList[0].orderClassInfoRP.imageUrl}}" mode="aspectFill"></image>
+				<view class="desc">
+					<view class="text-content"> {{item.orderItemList[0].orderClassInfoRP.className}}</view>
+					<view>
+						<view class="cu-tag bg-gray light sm ">
+							<text class="text-df text-black">{{item.orderItemList[0].orderClassInfoRP.year}}年度</text>
+						</view>
+					</view>
+				</view>
+			</view>
+
+
+			<view class="margin-sm flex justify-between">
+				<view class="text-gray text-df"></view>
+				<view>
+					<text class="text-black">可获得学时:{{item.orderItemList[0].orderClassInfoRP.classHour}}学时</text>
+				</view>
+			</view>
+		</div>
+	</div>
+
+ <view wx:else>
+		<view class="padding-xl text-center text-white">
+			<view class="padding-xl">
+			
+			</view>
+			<view class="padding-xl">
+				<image src="/images/order.png" style="width:30%;" mode="widthFix"> </image>
+			</view>
+
+
+			<view class="padding-xs text-gray">
+				暂无数据
+			</view>
+			<view class="padding">
+			
+			</view>
+		</view>
+	</view>
+
+</view>

@@ -1,0 +1,54 @@
+/* pages/mine/my-order/order-detail/index.wxss */
+.newsList-order {
+  width: 100%;
+  padding-top:0rpx;
+  padding-bottom:0rpx;
+  border-bottom: 8px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.descript-order {
+  margin-top: 0px;
+  font-size: 13px;
+}
+.descript-order-pay {
+  margin-top: 0px;
+  color:#e54d42;
+  font-size: 13px;
+}
+
+.miaosha-price-btn-order {
+  width: 100%;
+  padding-left:0rpx;
+  padding-right:0rpx;
+  padding-bottom: 15px;
+  padding-top:15rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-content-order {
+display: flex;
+padding: 30rpx 30rpx;
+}
+.item-content-order>image {
+width: 240rpx;
+height: 6.4em;
+margin-right: 20rpx;
+border-radius: 6rpx;
+}
+
+.item-content-order .desc {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.item-content-order .text-content {
+font-size: 26rpx;
+color: #888;
+height: auto;
+overflow: hidden;
+}

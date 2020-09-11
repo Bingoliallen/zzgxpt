@@ -1,0 +1,169 @@
+<!--pages/course-learn/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+
+<view>
+	<!-- <view class="bg-img" style="background-image: url('{{pic}}');height: 414rpx;">
+
+	</view> -->
+
+	<view class="bg-bottom1">
+		<image class='background-image-login1' src="{{pic}}" mode="scaleToFill"></image>
+		<view class="content-bottom1  padding-tb-xl">
+			<view class="padding-xl text-center text-white">
+				<view wx:if="{{ mstCourse!=null&& mstCourse!=''}}" class="padding-xs text-lg">
+					<text class="cu-btn text-red " >{{mstCourse}}</text>
+				</view>
+				<view wx:if="{{ mst!=null&& mst!=''}}" class="padding-xs">
+
+					<!-- <button class="cu-btn bg-white round line-white " >开始学习</button> -->
+					<button class="cu-btn bg-red " bindtap="toStudy">{{mst}}</button>
+					<!-- <button class="cu-btn bg-white text-blue line-blue ">开始学习</button> -->
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+</view>
+
+
+
+
+
+<view style="margin-top:10px;">
+
+	<view class="cu-bar justify-start bg-white">
+		<view class="action  text-left border-title">
+			<text class="text-xl text-bold text-drak">课程目录</text>
+			<text class="bg-gradual-blue" style="width:4rem"></text>
+		</view>
+	</view>
+
+
+
+	<view class="content-view-de">
+		<view class="bg-white float-view">
+			<div style="background-color: #fff;">
+				<div wx:for="{{detaildata.myClassCourseRPList}}" wx:key='index' class="newsListDe" bindtap="goDetail" data-id="{{index}}">
+
+
+					<div class="title">
+						<span style="margin-right:10px">{{ (index+1)<10?'0'+(index+1):''+(index+1)}} </span>
+						{{item.courseName}}
+					</div>
+					<div class="descriptDiv" style="margin-left:28px">
+						<div class="wordde" :style="item.pic ? 'width: 75%;' : ''">
+							<div class="descriptde">已学</div>
+							<div class="descriptde-red">{{item.learnSpeed}}%</div>
+						</div>
+						<div style="clear:both;" />
+					</div>
+
+
+				</div>
+			</div>
+		</view>
+
+		<view class="cu-tabbar-height bg-white"></view>
+		<view class="cu-tabbar-height bg-white"></view>
+	</view>
+</view>
+
+
+<!-- <view class="cu-bar tabbar bg-white shadow foot">
+	<view class="action">
+		<view class="text-right bg-white">
+		
+		</view>
+	</view>
+
+</view> -->
+
+
+<view class="kefuzx">
+	
+	  <button class="cu-btn " 
+		     style="width:82px;height:82px; background-size: 82px 82px;background-color:transparent;background-repeat:no-repeat;border:none;background-image:url({{iconUrl}}/ico/v11/android/drawable-xxhdpi/customer_service.png);" plain='true'
+	       open-type="contact" bindcontact="handleContact">
+   	</button>
+		 
+ 	 <!-- <image class="imgde-icon" style="width:22px;height:22px;" src="/images/customer_service@3x.png" mode="widthFix"></image> -->
+		<!-- <image style="background-color: transparent;"  src="{{item.courseImg}}" class="png" style="width:25px;height:25px;margin-right:30rpx;" mode="aspectFit" ></image> -->
+	
+
+</view>
+
+<view>
+
+
+<view wx:if="{{showJYDialog==true}}" class="cu-modal {{showJYDialog==true?'show':''}}">
+	<view class="cu-dialog">
+		<view class="bg-white padding-top-xs text-center text-white">
+			<view class="bg-white padding-xs text-lg text-black text-bold">
+				提交结业申请
+			</view>
+			<view class="bg-white padding-top-xs padding-bottom-xs padding-left-xl  padding-right-xl text-red ">
+				检测到您尚有班级未提交结业申请，请提交您的结业申请后再进行学习，感谢配合！
+			</view>
+		</view>
+
+
+		<form>
+
+			<view class="cu-form-group">
+				<view class="title">姓名</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="text" value="{{name}}" bindinput="nameInput"></input>
+	      
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">联系电话</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" type="number" value="{{phone}}" bindinput="phoneInput"></input>
+			</view>
+
+
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" disabled="true" placeholder="请输入" value="{{gz }}" bindinput="gzInput"></input>
+			</view>
+
+			<view class="cu-form-group">
+				<view class="title">学习及考试工种等级</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入" value="{{gzdj}}" bindinput="gzdjInput"></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">预计参加考试时间</view>
+				<view >
+					<radio-group bindchange="radioChange">
+					   <view style="display:inline-block;">
+						 <radio value="06" class="blue radio-size"> <text class="text-black text-lg ">6月</text></radio>
+						<radio value="07" class="blue radio-size"> <text class="text-black text-lg ">7月</text></radio>
+						<radio value="08" class="blue radio-size "> <text class="text-black text-lg ">8月</text></radio>
+						 </view>
+						
+					</radio-group>
+
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">备注</view>
+				<input class="nickname_input" placeholder-class="nickname_placeholder" placeholder="请输入" value="{{bz}}" bindinput="bzInput"></input>
+			</view>
+
+		</form>
+		<view class="bg-white text-white">
+			<view class="padding-left-xl padding-right-xl padding-top-xl padding-bottom flex flex-direction">
+				<button class="cu-btn bg-blue lg" bindtap="savezhengzhoumessage">提交</button>
+			</view>
+
+		</view>
+
+
+	</view>
+</view>
+</view>

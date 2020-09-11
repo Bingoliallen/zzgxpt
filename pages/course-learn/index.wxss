@@ -1,0 +1,121 @@
+/* pages/course-learn/index.wxss */
+.content-view-de{
+    float:left;
+    width:100%;
+    margin-top:0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+.news .item .riqi {
+    float: right;
+    margin-right: 10rpx;
+    color: #666;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  } 
+  .newsListDe {
+    width: 720rpx;
+    padding-top:10px;
+    padding-bottom:10rpx;
+    padding-left:20px;
+    padding-right:20px;
+    background-color: #FFF;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    width: 100%;
+    font-size: 13px;
+  }
+  .title-index {
+    font-size: 13px;
+  }
+  .descriptDiv {
+    margin-top:10rpx;
+    display: flex;
+    flex-direction: row;
+  }
+  .titleDiv {
+    display: flex;
+    flex-direction: row;
+  }
+  .descriptde {
+    font-size: 12px;
+    padding-left:2px;
+    color:#666;
+  }
+  .descriptde-red {
+    font-size: 12px;
+    padding-left:2px;
+    color:#e54d42;
+  }
+  .wordde {
+    line-height: 25px;
+  }
+  .cover {
+    width: 25%;
+  }
+  
+  .cover-img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .imgde{
+    margin-top:15rpx;
+  }
+
+  .imgde-icon{
+    margin-bottom:15px;
+    margin-right: 10px;
+  }
+
+
+  .background-image-login1{
+    width : 100%;
+    position: absolute;
+    height:514rpx;
+    left: 0px;
+    top: 0px;
+ }
+ .content-bpttom1{
+    position: absolute;
+    width: 100%;
+    height:414rpx;
+   
+    left: 0px;
+    top: 0px;
+}
+.bg-bpttom1{
+  width: 100%;
+  height:414rpx;
+  position: relative;
+}
+
+.kefuzx{
+  position: fixed;
+  align-items: center;
+  bottom: 100px; 
+  right: 10px; 
+}
+
+
+
+.cu-form-group .title {
+  /* min-width: calc(7em + 30rpx); */
+  width: calc(9em + 30rpx);
+}
+.radio-size{
+  transform: scale(0.7,0.7);
+}
+.nickname_placeholder, .nickname_input {
+  text-align: right;
+}
+

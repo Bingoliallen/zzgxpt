@@ -1,0 +1,36 @@
+<!--pages/certification/idcard-collection/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">身份证拍摄</view>
+</cu-custom>
+
+<view>
+	<view class="padding">
+	</view>
+	<view class="padding-xl text-center text-white">
+		<view class="padding-xs text-lg text-black text-bold">
+			请将身份证正面放入扫描框
+		</view>
+   <view class="padding-xl" >
+		</view>
+
+		<view class="padding-xl">
+
+			<camera class="camera"  wx:if="{{!show}}" device-position="back" flash="off" binderror="error">
+				<cover-view class="id_m">
+					<cover-image class="img" src="/images/js_images_id_1.png"></cover-image>
+				</cover-view>
+			</camera>
+
+			<image class="camera_img" src="{{src}}" wx:if="{{show}}"></image>
+
+		</view>
+		<view class="padding-xl" >
+		</view>
+		<view class="padding-xl">
+			<button class="cu-btn bg-blue lg" bindtap="takePhoto">点击拍摄</button>
+		</view>
+
+	</view>
+
+</view>

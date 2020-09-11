@@ -1,0 +1,25 @@
+<!--pages/news-list/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+
+<view class="content-view">
+	<view class="bg-white float-view">
+		<image style="padding-left: 8px;padding-right: 8px;margin-top: 0px;height: 189rpx;width:100%;" src="{{urls[TabCur]}}" mode="aspectFill"></image>
+		
+        <div style="background-color: #fff;">
+			<div wx:for="{{wzlist}}" wx:key='id' class="newsList" bindtap="goDetail" data-id="{{item.url}}">
+				<div class="title">{{item.title}}</div>
+				<div class="descriptDiv">
+					<div class="word" :style="item.pic ? 'width: 75%;' : ''">
+						<div class="descript">{{item.publishDate}}</div>
+						<div style="clear:both;" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</view>
+</view>

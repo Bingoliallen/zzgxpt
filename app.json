@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/start/index",
+    "pages/index/index",
+    "pages/home/home",
+    "pages/learn/learn",
+    "pages/mine/mine",
+    "pages/forgetpwd/forgetpwd",
+    "pages/course-center/index",
+    "pages/nav-list/index",
+    "pages/news-list/index",
+    "pages/course-detail/index",
+    "pages/nav-detail/index",
+    "pages/news-detail/index",
+    "pages/course-list/index",
+    "pages/course-learn/index",
+    "pages/open-study/tips/index",
+    "pages/open-study/authentication/index",
+    "pages/open-study/start-study/index",
+    "pages/mine/user-info/index",
+    "pages/mine/my-record/index",
+    "pages/mine/setting/index",
+    "pages/mine/my-order/index",
+    "pages/mine/customer-service/index",
+    "pages/mine/about-us/index",
+    "pages/webview/index",
+    "pages/register/index",
+    "pages/mine/my-order/order-detail/index",
+    "pages/select-school/index",
+    "pages/certification/index",
+    "pages/certification/idcard-collection/index",
+    "pages/certification/update-accountinfo/index",
+    "pages/certification/face-recognition/index",
+    "components/pop-up/index"
+  ],
+  "subpackages": [
+    {
+      "root": "packages",
+      "name": "packages",
+      "pages": [
+        "pages/login/login",
+        "pages/login/index"
+      ],
+      "independent": false
+    }
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0081ff",
+    "navigationBarTitleText": "",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 300
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap21.json"
+}

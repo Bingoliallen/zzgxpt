@@ -1,0 +1,47 @@
+<!--pages/certification/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">实名认证</view>
+</cu-custom>
+
+<view>
+	<view class="padding">
+	</view>
+	<view class="padding-xl text-center text-white">
+		<view class="padding-xs text-lg text-black text-bold">
+			请先上传您的身份证正面照
+		</view>
+		<view class="padding-xs text-red ">
+			支持JPG/PNG图片格式
+		</view>
+
+		<view class="padding-xl">
+			<image wx:if="{{src==null}}" src="/images/id.png" style="width:90%;height:30vh; " mode="widthFix"> </image>
+			<image wx:else src="{{src}}" style="width:90%;" mode="widthFix"></image>
+			<button wx:if="{{src==null ||src==''}}" class="cu-btn bg-blue lg" bindtap="toUp">点击上传</button>
+			<button wx:else class="cu-btn bg-blue lg" bindtap="toUp">重新上传</button>
+		</view>
+
+		<view class="padding-xs">
+			
+        <checkbox class="round blue cb-size" bindtap="selectRead" checked="{{select_read}}"></checkbox>
+				<text class=" text-black " bindtap="selectRead">勾选并同意</text>
+				<text class=" text-red " bindtap="goYhxy"> 用户协议</text>
+				<text class=" text-black ">&</text>
+				<text class=" text-red " bindtap="goRlcj"> 人脸采集与识别服务协议</text>
+		</view>
+	</view>
+
+</view>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+	<view class="action">
+		<view class="padding  text-center bg-blue" bindtap="numSteps">
+			<view>
+				<text class="text-lg text-white" >下一步</text>
+			</view>
+		</view>
+	</view>
+
+</view>

@@ -1,0 +1,66 @@
+/* pages/news-list/index.wxss */
+.content-view{
+    float:left;
+    width:100%;
+    margin-top:5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+.news .item .riqi {
+    float: right;
+    margin-right: 10rpx;
+    color: #666;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  } 
+  .newsList {
+    width: 720rpx;
+    padding-top:10rpx;
+    padding-bottom:10rpx;
+    padding-left:20rpx;
+    padding-right:20rpx;
+    background-color: #FFF;
+    border-bottom: 5px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    width: 100%;
+    font-size: 13px;
+  }
+  .descriptDiv {
+    margin-top:10rpx;
+    display: flex;
+    flex-direction: row;
+  }
+  .descript {
+    
+    color:#666;
+  }
+  .word {
+    line-height: 25px;
+  }
+  .cover {
+    width: 25%;
+  }
+  
+  .cover-img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+
+
+
+
+
+
+
+

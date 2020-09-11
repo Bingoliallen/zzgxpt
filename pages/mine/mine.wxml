@@ -1,0 +1,49 @@
+<!--pages/mine/mine.wxml-->
+<!--微信顶部-->
+<cu-custom bgColor="bg-gradual-blue">
+	<view slot="content" class="text-xl text-bold">我的</view>
+</cu-custom>
+<view class="content-view">
+
+	<div style="background-color: #fff;">
+
+		<div class="miaosha-price-btn1" bindtap="goDetail">
+
+			<div wx:if="{{isLogin}}">
+				<text class="text-xxl text-blue">{{realName}}</text>
+				<view class="cu-item " style="margin-top:30rpx;">
+					<view class="contents">
+						<image src="/images/js_images_tel.png" class="png" style="width:20px;height:13px;margin-right:10rpx;" mode="aspectFit"></image>
+						<text class="text-grey">{{cardNum}}</text>
+					</view>
+				</view>
+			</div>
+			<div wx:else>
+		    	<text class="text-xxl text-drak">登录/注册</text>
+			</div>
+			<image wx:if="{{headPhoto==null||headPhoto==''}}"  src="/images/js_images_head.png" class="cu-avatar xl round margin-left " style="background-image:url('/images/js_images_head.png');"></image>
+			<image wx:else  src="{{imgUrl+headPhoto}}" class="cu-avatar xl round margin-left "  style="background-image:url({{imgUrl+headPhoto}})"></image>
+		</div>
+	</div>
+
+
+	<view class="bg-white float-view">
+		<view class="goods-container01">
+			<view class="goods-box01" wx:for="{{goods}}" wx:key="id" bindtap="toDetailsTap" data-id="{{index}}">
+				<view class="contents1">
+					  <image wx:if="{{index<3}}" src="{{item.courseImg}}" class="png" 
+						      style="width:25px;height:25px;margin-left:30rpx;margin-right:30rpx;" mode="aspectFit" ></image>
+					  <text wx:if="{{index<3}}" class="text-grey" >{{item.courseName}}</text>
+						<button wx:else class="cu-btn bg-white text-grey padding-top-lg padding-bottom-lg" open-type="contact" bindcontact="handleContact">
+					    	 <image src="{{item.courseImg}}" class="png" style="width:25px;height:25px;margin-right:30rpx;" mode="aspectFit" ></image>
+						    {{item.courseName}}
+						</button>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+
+</view>

@@ -1,0 +1,24 @@
+var filter = {
+  numberToFix: function (s) {
+    var day = Math.floor( s/ (24*3600) ); // Math.floor()向下取整 
+    var hour = Math.floor( (s - day*24*3600) / 3600); 
+    var minute = Math.floor( (s - day*24*3600 - hour*3600) /60 ); 
+    var second = s - day*24*3600 - hour*3600 - minute*60; 
+    var h=hour;
+    var m=minute;
+    var s=second;
+    if(hour<10){
+      h='0'+hour;
+    }
+    if(minute<10){
+      m='0'+minute;
+    }
+    if(second<10){
+      s='0'+second;
+    }
+    return h + ":" + m + ":" + s ;
+  }
+}
+module.exports = {
+  numberToFix: filter.numberToFix
+}

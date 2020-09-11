@@ -1,0 +1,4 @@
+/* pages/mine/customer-service/index.wxss */
+page{
+    padding-bottom: 100rpx;
+}

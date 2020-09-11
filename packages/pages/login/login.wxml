@@ -1,0 +1,117 @@
+<!--pages/login/login.wxml-->
+<view class='cu-custom'>
+	<view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+		<navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+			<text class='cuIcon-back'></text> 返回
+		</navigator>
+		<view class='content' style='top:{{StatusBar}}px;'></view>
+	</view>
+</view>
+
+
+<view class="page">
+	<view class="bg-top">
+
+		<image class='background-image-login' src="../../images/login_bg@2x.png" mode="widthFix"></image>
+		<view class="content-login">
+			<view class=" text-xxl padding-xl" style="margin-left: 10px;margin-right: 10px">
+				<view>
+					<view class="text_num">
+						<text class="text-black text-bold" bindtap="toRigister" style="margin-left: 10px;">登录</text>
+						<!-- <text class="text-black text-bold" style="margin-left: 20px;" bindtap="toRigister">注册</text> -->
+					</view>
+					<view class="img-class">
+						<view wx:if="{{isChange == false}}">
+							<image style="width: 30px;height: 5px;margin-left: 13px;" src="../../images/face.png"></image>
+						</view>
+						<view wx:else>
+							<image style="width: 30px;height: 5px;margin-left: 13px;"></image>
+							<image style="width: 30px;height: 5px;margin-left: 23px;" src="../../images/face.png"></image>
+						</view>
+
+					</view>
+				</view>
+
+				<form wx:if="{{isChange == false}}">
+					<view class="cu-form-group" style="margin-top: 10px;">
+						<input placeholder="请输入账号" type="" value="{{userNum}}"  bindinput ="numInput"></input>
+					</view>
+					<view class="cu-form-group">
+						<input placeholder="请输入密码" password  value="{{userPwd}}"  bindinput ="pwdInput"></input>
+					</view>
+					
+					<view class="cu-bar ">
+						<view class="action">
+							<text class="text-grey forget" bindtap="toForget">忘记密码？</text>
+						</view>
+						<view class="action">
+							<text class="text-grey forget" bindtap="toRegister">立即注册</text>
+						</view>
+					</view>
+        
+
+
+					
+				</form>
+
+				<form wx:else>
+					<view class="cu-form-group" style="margin-top: 10px;">
+						<input placeholder="注册人姓名" type=""></input>
+					</view>
+					<view class="cu-form-group">
+						<input placeholder="注册人身份证号" type=""></input>
+					</view>
+					<view class="cu-form-group">
+						<input placeholder="登录密码" password></input>
+					</view>
+					<!-- <view class="recharg_wechat" bindtap="toLogin">
+						<image class="Icon" mode="widthFix" src="../../images/next_nor.png" wx:if="{{isLogin == false}}"></image>
+						<image class="Icon" mode="widthFix" src="../../images/next_pro.png" wx:else></image>
+					</view> -->
+				</form>
+
+
+			</view>
+		</view>
+
+
+	</view>
+	<view class="bg-bottom">
+	  	<image class='background-image-login' src="../../images/illustration1.png"  mode="widthFix"></image>
+			<view class="content-bottom">
+          <view  class="recharg_wechat" bindtap="toLogin" style="margin-right: 30px">
+						<image class="Icon" mode="widthFix" src="../../images/next_nor.png" wx:if="{{isLogin == false}}"></image>
+						<image class="Icon" mode="widthFix" src="../../images/next_pro.png" wx:else></image>
+					</view>
+			</view>
+	</view>
+</view>
+
+
+
+
+
+<view wx:if="{{showDialog==true}}" class="cu-modal {{showDialog==true?'show':''}}">
+		<view class="cu-dialog">
+
+	   <view class="bg-white padding-top-xl text-center text-white">
+				<view class="bg-white padding-xs text-lg text-black text-bold">
+					实名认证
+				</view>
+			</view>
+			<view class="bg-white padding-xl text-left text-white">
+				<view class="padding-xs text-black ">
+					根据《河南省人民政府办公厅关于印发河南职业技能提升行动方案（2019-2021年）的通知》和《河南省人力资源和社会保障厅河南财政厅关于进一步明确职业技能提升行动资金使用的通知》要求，职业技能提升线上培训必须实施人员监管，确保本人亲自参与培训方可申请补贴，因此需采集学员人脸信息，便于后续补贴申请
+				</view>
+				<view class="bg-white padding-xs text-red ">
+					我们承诺：此平台收集的基本信息以及人脸信息均作为学员向监管部门申请培训补贴的证明材料使用，禁做他用，请学员放心使用！
+				</view>
+			</view>
+
+			<view class="padding-xl cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left">
+					<button class="cu-btn line-blue text-blue" bindtap="hideModal">知道了</button>
+				</view>
+			</view>
+		</view>
+	</view>

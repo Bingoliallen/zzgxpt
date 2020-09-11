@@ -1,0 +1,111 @@
+<!--pages/certification/update-accountinfo/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">信息确认</view>
+</cu-custom>
+<form>
+	<view class="cu-form-group ">
+		<view class="title">姓名</view>
+		<input class="nickname_input" bindinput ="xmInput" disabled="true" placeholder-class="nickname_placeholder" value="{{accountName}}" placeholder="请输入" ></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">身份证号</view>
+		<input class="nickname_input" bindinput ="sfzInput" disabled="true" placeholder-class="nickname_placeholder" value="{{cardNumber}}"  placeholder="请输入" ></input>
+	</view>
+    <view class="cu-form-group">
+		<view class="title">性别</view>
+		<!-- <picker wx:if="{{sex==null ||sex==''}}" bindchange="SexPicker" value="{{sex}}" range="{{sexlist}}">
+			<view class="picker">
+                {{sex?sexlist[sex]:'请选择'}}
+			</view>
+		</picker> -->
+		<input class="nickname_input" bindinput ="xbInput" disabled="true" placeholder-class="nickname_placeholder" value="{{sex==1?'男':'女'}}"  placeholder="请输入" ></input>
+		<!-- <text class="text-cut">{{sex==1?'男':'女'}}</text> -->
+	</view>
+	<view class="cu-form-group">
+		<view class="title">民族</view>
+		<input class="nickname_input" bindinput ="mzInput" disabled="true" placeholder-class="nickname_placeholder" value="{{nation}}"  placeholder="请输入" ></input>
+		<!-- <input wx:if="{{nation==null ||nation==''}}" bindinput ="mzInput" placeholder="请输入"></input>
+		<text wx:else class="text-cut">{{nation}}</text> -->
+	</view>
+	<view class="cu-form-group">
+		<view class="title">住址</view>
+		<input class="nickname_input" bindinput ="zzInput"  disabled="true" placeholder-class="nickname_placeholder" value="{{address}}" placeholder="请输入"></input>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">出生年月</view>
+
+		<!-- <picker wx:if="{{birthDay==null ||birthDay==''}}" mode="date" value="{{birthDay}}" start="1915-01-01" end="2020-09-01" bindchange="DateChange">
+			<view class="picker">
+				{{birthDay}}
+			</view>
+		</picker> -->
+			<input class="nickname_input" bindinput ="xbInput" disabled="true" placeholder-class="nickname_placeholder" value="{{birthDay}}"  placeholder="请输入" ></input>
+        <!-- <text class="text-cut">{{birthDay}}</text> -->
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">人员类别</view>
+		<picker bindchange="PickerChange" value="{{picker.n}}" range-key="{{'n'}}"range="{{picker}}">
+			<view class="picker">
+				<!-- {{picker[index]}} -->
+                {{index?picker[index].n:'请选择'}}
+			</view>
+		</picker>
+		<!-- <text wx:else class="text-cut">{{accountTypeName}}</text> -->
+	</view>
+	
+	
+	
+	<view class="cu-form-group" bindtap="pickAddress">
+		<view class="title">所属区域</view>
+		<!-- <picker wx:if="{{areaId==null ||areaId==''}}" mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker> -->
+    <view >
+		{{areaName||"请选择"}}
+		 <text class="text-cut cuIcon-right xl text-gray" ></text>
+		</view>
+		
+	</view>
+	<view class="cu-form-group">
+		<view class="title">单位名称</view>
+		<input class="nickname_input" bindinput ="dwInput" placeholder-class="nickname_placeholder" placeholder="填写单位名称，如无单位可不填写" value="{{unitName}}"></input>
+	</view>
+</form>
+
+<view class="padding-xl  text-center text-white">
+	</view>
+
+	<view class="padding-xl flex flex-direction">
+		<button class="cu-btn bg-blue lg" bindtap="toForm">认证完成</button>
+	</view>
+  <view class="padding-xl  text-center text-white">
+	</view>
+
+
+	
+<pop-up visible="{{visible}}" onClose="closePopUp">
+  <view slot="content">
+    <view class="picker-view">
+      <view class="picker-view__pane">
+        <text class="panetext" catchtap="cityCancel" data-ptpid="fa67-12ea-9918-cdf8">取消</text>
+        <text class="panetextok" catchtap="citySure" data-ptpid="0cbd-188c-b3e5-cd10">确定</text>
+      </view>
+      <picker-view class="pick-view__group" bindchange="cityChange" value="{{value}}" wx:key="">
+        <picker-view-column indicator-class="item_active">
+          <view wx:for="{{provinces}}" class="picker-item" wx:key="idnex">{{item.name}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{citys}}" class="picker-item" wx:key="">{{item.name}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{areas}}" class="picker-item" wx:key="">{{item.name}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</pop-up>

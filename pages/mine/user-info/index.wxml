@@ -1,0 +1,47 @@
+<!--pages/mine/user-info/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">资料设置</view>
+</cu-custom>
+<form>
+    <view class="cu-form-group">
+		<view class="title">我的头像</view>
+		<image wx:if="{{headPhoto==null||headPhoto==''}}" class="cu-avatar round xl bg-gray" 
+		    src="/images/js_images_head.png" bindtap="ChooseImage"
+		    style="background-image:url('/images/js_images_head.png')"></image>
+		<image wx:else class="cu-avatar round xl bg-gray" 
+		    src="{{imgUrl+headPhoto}}" bindtap="ChooseImage"
+		    style="background-image:url({{imgUrl+headPhoto}})"></image>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">姓名</view>
+		<view >{{realName}}</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">性别</view>
+		<view >
+		   <text wx:if="{{sex==1}}">男</text>
+		   <text wx:if="{{sex==0}}">女</text>
+		   <text wx:else></text>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">身份证</view>
+		<view >{{cardNum}}</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">身份证正面照</view>
+		<image src="{{imgUrl+idCardPhoto}}" style="width:90px;height:50px" mode="aspectFill" bindtap="idcardChooseImage"> </image> 
+	</view>
+
+</form>
+
+<!-- <view class="padding-xl  text-center text-white">
+	</view>
+
+	<view class="padding-xl flex flex-direction">
+		<button class="cu-btn bg-blue lg" bindtap="toSave">保存</button>
+	</view>
+  <view class="padding-xl  text-center text-white">
+</view> -->
+

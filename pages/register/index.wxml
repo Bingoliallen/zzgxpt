@@ -1,0 +1,93 @@
+<!--pages/register/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">注册</view>
+</cu-custom>
+
+
+
+<form>
+	<view class="cu-form-group">
+		<view class="title">手机号码</view>
+		<input placeholder="请输入" type="number" bindinput ="phoneInput"></input>
+		<view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title" >验证码</view>
+		<input placeholder="请输入" type="number" bindinput ="codeInput"></input>
+		<button wx:if="{{showDialogCode==true}}" class="cu-btn bg-blue shadow" bindtap="checkmobileexist">获取验证码</button>
+		<button wx:else class="cu-btn bg-blue shadow " ><text class="padding-left padding-right">{{num>=0?num:0}} S</text></button>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">设置密码</view>
+		<input placeholder="8到18位包含数字和字母" password bindinput ="pwdInput"></input>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">确认密码</view>
+		<input placeholder="请再次输入密码" password bindinput ="pwdtwoInput"></input>
+	</view>
+
+</form>
+<view class="padding-xl  text-center text-white">
+	<view class="padding-xs">
+		<checkbox class="round blue cb-size" bindtap="selectRead" checked="{{select_read}}"></checkbox>
+		<text class=" text-black " bindtap="selectRead" >我已阅读</text>
+		<text class=" text-blue " bindtap="goYhxy"> "用户注册协议"</text>
+		<text class=" text-black ">和</text>
+		<text class=" text-blue " bindtap="goYstk"> "隐私政策"</text>
+	</view>
+
+</view>
+
+<view class="padding-xl flex flex-direction">
+	<button class="cu-btn bg-blue lg" bindtap="loginBtnClick">下一步</button>
+</view>
+<view class="padding-xl  text-center text-white">
+</view>
+
+
+
+
+
+<view wx:if="{{showDialog==true}}" class="cu-modal {{showDialog==true?'show':''}}">
+		<view class="cu-dialog">
+			<!-- <view class="cu-bar bg-white justify-end">
+				<view class="content"></view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view> -->
+
+	   <view class="bg-white padding-top-xl text-center text-white">
+				<view class="bg-white padding-xs text-lg text-black text-bold">
+					实名认证
+				</view>
+			</view>
+			<view class="bg-white padding-xl text-left text-white">
+				<view class="padding-xs text-black ">
+					根据《河南省人民政府办公厅关于印发河南职业技能提升行动方案（2019-2021年）的通知》和《河南省人力资源和社会保障厅河南财政厅关于进一步明确职业技能提升行动资金使用的通知》要求，职业技能提升线上培训必须实施人员监管，确保本人亲自参与培训方可申请补贴，因此需采集学员人脸信息，便于后续补贴申请
+				</view>
+				<view class="bg-white padding-xs text-red ">
+					我们承诺：此平台收集的基本信息以及人脸信息均作为学员向监管部门申请培训补贴的证明材料使用，禁做他用，请学员放心使用！
+				</view>
+			</view>
+
+			<view class="padding-xl cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left">
+					<button class="cu-btn line-blue text-blue" bindtap="hideModal">知道了</button>
+				</view>
+			</view>
+		</view>
+	</view>
+
+

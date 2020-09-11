@@ -1,0 +1,11 @@
+<!--pages/news-detail/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">新闻中心</view>
+</cu-custom>
+
+<import src="../../components/wxParse/wxParse.wxml" />
+
+<view>
+  <template is="wxParse" data="{{wxParseData:newsDetailData.nodes}}" />
+</view>
